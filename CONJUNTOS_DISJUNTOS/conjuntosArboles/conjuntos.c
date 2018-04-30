@@ -51,13 +51,9 @@ tipoElemento buscarAltura(tipoElemento x, particion C)
 
 tipoElemento buscarCompresionCaminos(tipoElemento x, particion C)
 {
-	if (C[x] <= 0) // SI ES LA RAIZ (CLASE DE EQUIVALENCIA) LA DEVOLVEMOS
-		return x;
-	else
-		{
-			C[x] = buscarCompresionCaminos(C[x], C); //SINO SEGUIMOS BUSCANDO HASTA ENCONTRARLA
-			return C[x];
-		}
+	if (C[x] <= 0) return x; // SI ES LA RAIZ (CLASE DE EQUIVALENCIA) LA DEVOLVEMOS
+		
+	else return(buscarCompresionCaminos(C[x], C)); //SINO SEGUIMOS BUSCANDO HASTA ENCONTRARLA
 }
 
 void unir(tipoElemento x, tipoElemento y, particion C)
@@ -100,9 +96,6 @@ void unirTamano(tipoElemento x, tipoElemento y, particion C)
 void unirAltura(tipoElemento x, tipoElemento y, particion C)
 {
 	tipoElemento eqX, eqY;
-	
-	eqX = x;
-	eqY = y;
 	
 	if (C[x] > 0) 
 		eqX = buscarAltura(x, C); //Obtenemos clase equivalencia del nodo hijo
